@@ -57,6 +57,11 @@
             color: #2563eb;
             font-weight: 700;
             font-size: 1.25rem;
+            transition: transform 0.3s ease;
+        }
+
+        .logo-container:hover {
+            transform: scale(1.05);
         }
 
         .nav-links {
@@ -70,11 +75,13 @@
             color: #475569;
             font-weight: 500;
             font-size: 0.95rem;
-            transition: color 0.2s;
+            transition: color 0.2s ease, transform 0.2s ease;
+            display: inline-block;
         }
 
         .nav-links a:hover {
             color: #2563eb;
+            transform: translateY(-2px);
         }
 
         .mode-button {
@@ -86,11 +93,14 @@
             cursor: pointer;
             color: #334155;
             font-weight: 500;
-            transition: all 0.2s;
+            transition: all 0.3s ease;
         }
 
         .mode-button:hover {
-            background-color: #e2e8f0;
+            background-color: #2563eb;
+            color: #ffffff;
+            border-color: #2563eb;
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
         }
 
         /* --- CONTAINER UTAMA --- */
@@ -109,15 +119,21 @@
             margin-bottom: 3.5rem;
         }
 
-        /* Bingkai Foto Polaroid */
+        /* Bingkai Foto Polaroid dengan Animasi */
         .photo-frame {
             background-color: #ffffff;
-            padding: 16px 16px 20px 16px;
+            padding: 16px;
             border-radius: 12px;
             box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
             margin-bottom: 2rem;
             width: 270px;
             border: 1px solid #f1f5f9;
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
+        }
+
+        .photo-frame:hover {
+            transform: translateY(-8px) rotate(1deg);
+            box-shadow: 0 20px 30px -10px rgba(0, 0, 0, 0.15);
         }
 
         .profile-img {
@@ -126,32 +142,6 @@
             object-fit: cover;
             border-radius: 8px;
             display: block;
-        }
-
-        /* Kontak Media Sosial di Dalam Frame Foto */
-        .social-links-frame {
-            margin-top: 15px;
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-            font-size: 0.9rem;
-            font-weight: 500;
-        }
-
-        .social-item {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 6px;
-            color: #475569;
-            padding: 4px 8px;
-            border-radius: 6px;
-            transition: background-color 0.2s, color 0.2s;
-        }
-
-        .social-item:hover {
-            background-color: #f1f5f9;
-            color: #2563eb;
         }
 
         /* Label & Teks Profil */
@@ -165,6 +155,12 @@
             display: inline-block;
             margin-bottom: 1.25rem;
             border: 1px solid #bfdbfe;
+            transition: all 0.3s ease;
+        }
+
+        .maba-label:hover {
+            background-color: #2563eb;
+            color: #ffffff;
         }
 
         .main-info h1 {
@@ -215,7 +211,7 @@
             margin-top: 4px;
         }
 
-        /* --- GRID KARTU (AUTOMATIS RAPIS DI HP & LAPTOP) --- */
+        /* --- GRID KARTU DENGAN ANIMASI HOVER --- */
         .grid-cards {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -231,12 +227,13 @@
             border: 1px solid #e2e8f0;
             border-top: 4px solid #2563eb;
             text-align: left;
-            transition: transform 0.2s, box-shadow 0.2s;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-top-color 0.3s ease;
         }
 
         .card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            transform: translateY(-6px);
+            box-shadow: 0 12px 20px -5px rgba(37, 99, 235, 0.15);
+            border-top-color: #1d4ed8;
         }
 
         .card h3 {
@@ -258,6 +255,18 @@
 
         .card li {
             margin-bottom: 0.4rem;
+        }
+
+        /* Styling Tautan Kontak */
+        .contact-link {
+            color: #2563eb;
+            font-weight: 600;
+            transition: color 0.2s ease, text-decoration 0.2s ease;
+        }
+
+        .contact-link:hover {
+            color: #1d4ed8;
+            text-decoration: underline;
         }
 
         /* --- FOOTER --- */
@@ -313,7 +322,7 @@
             }
 
             .grid-cards {
-                grid-template-columns: 1fr; /* Memaksa 1 kolom rapi di HP */
+                grid-template-columns: 1fr;
             }
 
             .section-header {
@@ -350,17 +359,6 @@
         <section class="profile-section" id="about">
             <div class="photo-frame">
                 <img src="foto.jpeg" alt="Foto Fajrul Falah Nabil Prasetyansyah" class="profile-img">
-                <div class="social-links-frame">
-                    <a href="https://instagram.com/fajjoo0" target="_blank" class="social-item">
-                        <span>📷</span> @fajjoo0
-                    </a>
-                    <a href="mailto:fajrulnabil885@gmail.com" class="social-item">
-                        <span>✉️</span> Email Saya
-                    </a>
-                    <a href="https://github.com/fajrulnabil" target="_blank" class="social-item">
-                        <span>🐙</span> GitHub Saya
-                    </a>
-                </div>
             </div>
 
             <div class="main-info">
@@ -433,9 +431,9 @@
         <div class="grid-cards">
             <div class="card">
                 <h3>Hubungi Saya</h3>
-                <p>Email: <a href="mailto:fajrulnabil885@gmail.com" style="color:#2563eb;">fajrulnabil885@gmail.com</a></p>
-                <p>Instagram: <a href="https://instagram.com/fajjoo0" target="_blank" style="color:#2563eb;">@fajjoo0</a></p>
-                <p>GitHub: <a href="https://github.com/fajrulnabil" target="_blank" style="color:#2563eb;">github.com/fajrulnabil</a></p>
+                <p>📷 Instagram: <a href="https://instagram.com/fajjoo0" target="_blank" class="contact-link">@fajjoo0</a></p>
+                <p>✉️ Email: <a href="mailto:fajrulnabil885@gmail.com" class="contact-link">fajrulnabil885@gmail.com</a></p>
+                <p>🐙 GitHub: <a href="https://github.com/fajrulnabil" target="_blank" class="contact-link">github.com/fajrulnabil</a></p>
             </div>
         </div>
 
