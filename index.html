@@ -2,7 +2,6 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <!-- Viewport wajib untuk skala layar HP dan Laptop -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fajrul.dev | Portfolio</title>
     <style>
@@ -24,11 +23,74 @@
             width: 100%;
             overflow-x: hidden;
             line-height: 1.6;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
 
         a {
             text-decoration: none;
             color: inherit;
+        }
+
+        /* --- TEMA MODE GELAP (DARK MODE) --- */
+        body.dark-mode {
+            background-color: #0f172a;
+            color: #f8fafc;
+        }
+
+        body.dark-mode header {
+            background-color: #1e293b;
+            border-bottom-color: #334155;
+        }
+
+        body.dark-mode .nav-links a {
+            color: #cbd5e1;
+        }
+
+        body.dark-mode .nav-links a:hover {
+            color: #60a5fa;
+        }
+
+        body.dark-mode .mode-button {
+            background-color: #334155;
+            color: #f8fafc;
+            border-color: #475569;
+        }
+
+        body.dark-mode .mode-button:hover {
+            background-color: #60a5fa;
+            color: #0f172a;
+        }
+
+        body.dark-mode .photo-frame,
+        body.dark-mode .card,
+        body.dark-mode footer {
+            background-color: #1e293b;
+            border-color: #334155;
+            color: #f8fafc;
+        }
+
+        body.dark-mode .main-info h1,
+        body.dark-mode .card h3,
+        body.dark-mode .section-title {
+            color: #f8fafc;
+        }
+
+        body.dark-mode .main-info p,
+        body.dark-mode .sub-info,
+        body.dark-mode .card p,
+        body.dark-mode .card ul,
+        body.dark-mode footer {
+            color: #cbd5e1;
+        }
+
+        body.dark-mode .maba-label {
+            background-color: #1e3a8a;
+            color: #93c5fd;
+            border-color: #1d4ed8;
+        }
+
+        body.dark-mode .contact-link {
+            color: #60a5fa;
         }
 
         /* --- HEADER / NAVBAR RESPONSIF --- */
@@ -39,6 +101,7 @@
             z-index: 1000;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
             border-bottom: 1px solid #e2e8f0;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
         }
 
         .nav-container {
@@ -128,7 +191,7 @@
             margin-bottom: 2rem;
             width: 270px;
             border: 1px solid #f1f5f9;
-            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease, background-color 0.3s ease;
         }
 
         .photo-frame:hover {
@@ -161,6 +224,40 @@
         .maba-label:hover {
             background-color: #2563eb;
             color: #ffffff;
+        }
+
+        /* ANIMASI EMOTIKON MELAMBAI */
+        .wave-emoji {
+            display: inline-block;
+            animation: wave 2s infinite;
+            transform-origin: 70% 70%;
+        }
+
+        @keyframes wave {
+            0% { transform: rotate(0deg); }
+            10% { transform: rotate(14deg); }
+            20% { transform: rotate(-8deg); }
+            30% { transform: rotate(14deg); }
+            40% { transform: rotate(-4deg); }
+            50% { transform: rotate(10deg); }
+            60% { transform: rotate(0deg); }
+            100% { transform: rotate(0deg); }
+        }
+
+        /* ANIMASI TEKS HALO MUNCUL */
+        .fade-in-text {
+            animation: fadeInUp 1s ease-out forwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .main-info h1 {
@@ -227,7 +324,7 @@
             border: 1px solid #e2e8f0;
             border-top: 4px solid #2563eb;
             text-align: left;
-            transition: transform 0.3s ease, box-shadow 0.3s ease, border-top-color 0.3s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-top-color 0.3s ease, background-color 0.3s ease;
         }
 
         .card:hover {
@@ -257,7 +354,6 @@
             margin-bottom: 0.4rem;
         }
 
-        /* Styling Tautan Kontak */
         .contact-link {
             color: #2563eb;
             font-weight: 600;
@@ -278,6 +374,7 @@
             padding: 1.75rem 0;
             margin-top: 4rem;
             font-size: 0.9rem;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
         }
 
         /* ===================================================
@@ -347,7 +444,7 @@
                 <li><a href="#what-i-can-do">What I Can Do</a></li>
                 <li><a href="#skills">Skills</a></li>
                 <li><a href="#contact">Contact</a></li>
-                <li><button class="mode-button">🌙 Mode Gelap</button></li>
+                <li><button class="mode-button" id="dark-toggle">🌙 Mode Gelap</button></li>
             </ul>
         </div>
     </header>
@@ -361,9 +458,9 @@
                 <img src="foto.jpeg" alt="Foto Fajrul Falah Nabil Prasetyansyah" class="profile-img">
             </div>
 
-            <div class="main-info">
+            <div class="main-info fade-in-text">
                 <span class="maba-label">Mahasiswa Baru Informatika</span>
-                <h1>Halo, Saya <br> Fajrul Falah Nabil Prasetyansyah</h1>
+                <h1>Halo, Saya <span class="wave-emoji">👋</span> <br> Fajrul Falah Nabil Prasetyansyah</h1>
                 <p><strong>NIM:</strong> 26050974129 | <strong>Prodi:</strong> S1 Pendidikan Teknologi Informasi</p>
                 <p>📍 Universitas Negeri Surabaya (UNESA) | Asal Trenggalek</p>
                 
@@ -443,6 +540,21 @@
     <footer>
         <p>&copy; 2026 Fajrul Falah Nabil Prasetyansyah. All rights reserved.</p>
     </footer>
+
+    <!-- JAVASCRIPT UNTUK MODE GELAP INTERAKTIF -->
+    <script>
+        const darkToggleBtn = document.getElementById('dark-toggle');
+        
+        darkToggleBtn.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            
+            if (document.body.classList.contains('dark-mode')) {
+                darkToggleBtn.textContent = '☀️ Mode Terang';
+            } else {
+                darkToggleBtn.textContent = '🌙 Mode Gelap';
+            }
+        });
+    </script>
 
 </body>
 </html>
