@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <!-- Tag Viewport PENTING untuk Responsif HP -->
+    <!-- Viewport wajib untuk skala layar HP dan Laptop -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fajrul.dev | Portfolio</title>
     <style>
@@ -14,20 +14,31 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
-        body {
-            background-color: #f9fafb;
-            color: #1f2937;
-            width: 100%;
-            overflow-x: hidden; /* Mencegah geser ke samping */
+        html {
+            scroll-behavior: smooth;
         }
 
-        /* --- HEADER / NAVBAR (DIPERBAIKI) --- */
+        body {
+            background-color: #f8fafc;
+            color: #1e293b;
+            width: 100%;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* --- HEADER / NAVBAR RESPONSIF --- */
         header {
             background-color: #ffffff;
             position: sticky;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            border-bottom: 1px solid #e2e8f0;
         }
 
         .nav-container {
@@ -42,14 +53,12 @@
         .logo-container {
             display: flex;
             align-items: center;
-            gap: 10px;
-            text-decoration: none;
-            color: #0047ab; /* Warna biru */
-            font-weight: bold;
-            font-size: 1.2rem;
+            gap: 8px;
+            color: #2563eb;
+            font-weight: 700;
+            font-size: 1.25rem;
         }
 
-        /* Nav Links untuk Desktop */
         .nav-links {
             display: flex;
             list-style: none;
@@ -58,129 +67,257 @@
         }
 
         .nav-links a {
-            text-decoration: none;
-            color: #4b5563;
+            color: #475569;
             font-weight: 500;
             font-size: 0.95rem;
             transition: color 0.2s;
         }
 
         .nav-links a:hover {
-            color: #0047ab;
+            color: #2563eb;
         }
 
-        /* Tombol Mode Gelap (Placeholder) */
         .mode-button {
-            background-color: #f3f4f6;
-            border: 1px solid #d1d5db;
-            padding: 6px 12px;
+            background-color: #f1f5f9;
+            border: 1px solid #cbd5e1;
+            padding: 6px 14px;
             border-radius: 20px;
             font-size: 0.85rem;
             cursor: pointer;
-            color: #1f2937;
+            color: #334155;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+
+        .mode-button:hover {
+            background-color: #e2e8f0;
         }
 
         /* --- CONTAINER UTAMA --- */
         .container {
             max-width: 1100px;
             margin: 0 auto;
-            padding: 2rem 1.5rem;
-            text-align: center; /* Merapikan konten profil ke tengah */
+            padding: 2.5rem 1.5rem;
         }
 
-        /* --- SECTION PROFIL --- */
+        /* --- HERO / SECTION PROFIL --- */
         .profile-section {
             display: flex;
             flex-direction: column;
             align-items: center;
-            margin-bottom: 2rem;
+            text-align: center;
+            margin-bottom: 3.5rem;
         }
 
-        /* Bingkai Foto 'Polaroid' */
+        /* Bingkai Foto Polaroid */
         .photo-frame {
             background-color: #ffffff;
-            padding: 15px 15px 30px 15px;
-            border-radius: 4px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            padding: 16px 16px 20px 16px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
             margin-bottom: 2rem;
-            width: 250px;
+            width: 270px;
+            border: 1px solid #f1f5f9;
         }
 
         .profile-img {
             width: 100%;
-            height: auto;
-            border-radius: 2px;
+            height: 270px;
+            object-fit: cover;
+            border-radius: 8px;
             display: block;
         }
 
-        .frame-info {
+        /* Kontak Media Sosial di Dalam Frame Foto */
+        .social-links-frame {
             margin-top: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
             font-size: 0.9rem;
-            color: #4b5563;
+            font-weight: 500;
         }
 
-        .frame-info div {
-            margin-bottom: 5px;
+        .social-item {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            color: #475569;
+            padding: 4px 8px;
+            border-radius: 6px;
+            transition: background-color 0.2s, color 0.2s;
         }
 
-        /* Label Maba */
+        .social-item:hover {
+            background-color: #f1f5f9;
+            color: #2563eb;
+        }
+
+        /* Label & Teks Profil */
         .maba-label {
             background-color: #eff6ff;
-            color: #1d4ed8;
-            padding: 6px 15px;
+            color: #2563eb;
+            padding: 6px 16px;
             border-radius: 20px;
             font-size: 0.85rem;
             font-weight: 600;
             display: inline-block;
-            margin-bottom: 1rem;
+            margin-bottom: 1.25rem;
+            border: 1px solid #bfdbfe;
         }
 
-        /* Deskripsi Teks Utama */
         .main-info h1 {
-            font-size: 2rem;
-            color: #111827;
-            margin-bottom: 0.5rem;
-            line-height: 1.2;
+            font-size: 2.25rem;
+            color: #0f172a;
+            margin-bottom: 0.75rem;
+            line-height: 1.25;
+            font-weight: 800;
         }
 
         .main-info p {
             font-size: 1rem;
-            color: #6b7280;
-            margin-bottom: 0.5rem;
+            color: #475569;
+            margin-bottom: 0.4rem;
         }
 
         .sub-info {
-            color: #4b5563;
-            font-size: 0.9rem;
+            color: #64748b;
+            font-size: 0.95rem;
+            margin: 1.25rem auto 0 auto;
+            max-width: 680px;
+            line-height: 1.7;
+        }
+
+        /* --- JUDUL SECTION --- */
+        .section-header {
+            margin: 3rem 0 1.5rem 0;
+            text-align: left;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            color: #0f172a;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 700;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 100%;
+            height: 3px;
+            background-color: #2563eb;
+            border-radius: 2px;
+            margin-top: 4px;
+        }
+
+        /* --- GRID KARTU (AUTOMATIS RAPIS DI HP & LAPTOP) --- */
+        .grid-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
             margin-bottom: 2rem;
         }
 
+        .card {
+            background: #ffffff;
+            padding: 1.75rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e2e8f0;
+            border-top: 4px solid #2563eb;
+            text-align: left;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        .card h3 {
+            color: #0f172a;
+            margin-bottom: 0.85rem;
+            font-size: 1.15rem;
+            font-weight: 700;
+        }
+
+        .card p, .card ul {
+            color: #475569;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .card ul {
+            padding-left: 1.25rem;
+        }
+
+        .card li {
+            margin-bottom: 0.4rem;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: #ffffff;
+            border-top: 1px solid #e2e8f0;
+            color: #64748b;
+            text-align: center;
+            padding: 1.75rem 0;
+            margin-top: 4rem;
+            font-size: 0.9rem;
+        }
+
         /* ===================================================
-           MEDIA QUERY (Tampilan Khusus HP & Layar Kecil)
+           MEDIA QUERY (Tampilan Khusus Layar HP / Tablet)
            =================================================== */
         @media screen and (max-width: 768px) {
-            /* 1. Atur Header di HP */
             .nav-container {
-                flex-direction: column; /* Baris jadi Kolom */
-                padding: 1rem;
-                gap: 15px; /* Jarak antar elemen */
+                flex-direction: column;
+                padding: 0.85rem 1rem;
+                gap: 12px;
             }
 
-            /* 2. Merapikan Menu Navigasi di HP */
             .nav-links {
-                flex-wrap: wrap; /* Menu boleh turun ke bawah */
-                justify-content: center; /* Di tengah */
-                gap: 10px 15px; /* Jarak antar kata */
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 8px 12px;
                 width: 100%;
             }
 
             .nav-links a {
-                font-size: 0.9rem; /* Ukuran teks sedikit lebih kecil */
+                font-size: 0.88rem;
             }
 
-            /* 3. Atur Konten Utama di HP */
+            .container {
+                padding: 1.5rem 1rem;
+            }
+
+            .photo-frame {
+                width: 240px;
+            }
+
+            .profile-img {
+                height: 240px;
+            }
+
             .main-info h1 {
-                font-size: 1.6rem; /* Judul nama diperkecil di HP */
+                font-size: 1.65rem;
+            }
+
+            .main-info p {
+                font-size: 0.92rem;
+            }
+
+            .grid-cards {
+                grid-template-columns: 1fr; /* Memaksa 1 kolom rapi di HP */
+            }
+
+            .section-header {
+                margin: 2rem 0 1rem 0;
             }
         }
     </style>
@@ -197,8 +334,9 @@
             
             <ul class="nav-links">
                 <li><a href="#about">About</a></li>
+                <li><a href="#education">Education</a></li>
                 <li><a href="#what-i-can-do">What I Can Do</a></li>
-                <li><a href="#achievement">Achievement</a></li>
+                <li><a href="#skills">Skills</a></li>
                 <li><a href="#contact">Contact</a></li>
                 <li><button class="mode-button">🌙 Mode Gelap</button></li>
             </ul>
@@ -208,22 +346,27 @@
     <!-- KONTEN UTAMA -->
     <div class="container">
         
-        <!-- SECTION PROFIL -->
+        <!-- PROFIL / HERO SECTION -->
         <section class="profile-section" id="about">
-            <!-- Bingkai Foto -->
             <div class="photo-frame">
-                <img src="foto.jpeg" alt="Foto Fajrul" class="profile-img">
-                <div class="frame-info">
-                    <div>📷 @fajjoo0</div>
-                    <div>✉️ Email Saya</div>
+                <img src="foto.jpeg" alt="Foto Fajrul Falah Nabil Prasetyansyah" class="profile-img">
+                <div class="social-links-frame">
+                    <a href="https://instagram.com/fajjoo0" target="_blank" class="social-item">
+                        <span>📷</span> @fajjoo0
+                    </a>
+                    <a href="mailto:fajrulnabil885@gmail.com" class="social-item">
+                        <span>✉️</span> Email Saya
+                    </a>
+                    <a href="https://github.com/fajrulnabil" target="_blank" class="social-item">
+                        <span>🐙</span> GitHub Saya
+                    </a>
                 </div>
             </div>
 
-            <!-- Teks Profil -->
             <div class="main-info">
                 <span class="maba-label">Mahasiswa Baru Informatika</span>
                 <h1>Halo, Saya <br> Fajrul Falah Nabil Prasetyansyah</h1>
-                <p>NIM: 26050974129 | Prodi: S1 Pendidikan Teknologi Informasi</p>
+                <p><strong>NIM:</strong> 26050974129 | <strong>Prodi:</strong> S1 Pendidikan Teknologi Informasi</p>
                 <p>📍 Universitas Negeri Surabaya (UNESA) | Asal Trenggalek</p>
                 
                 <p class="sub-info">
@@ -232,13 +375,76 @@
             </div>
         </section>
 
-        <!-- What I Can Do Section (Placeholder) -->
-        <section id="what-i-can-do" style="margin-top: 3rem; text-align: left;">
-            <h2 style="font-size: 1.4rem;">💻 What I Can Do</h2>
-            <p style="color: #6b7280; margin-top: 10px;">(Tambahkan konten di sini...)</p>
-        </section>
+        <!-- INFORMASI AKADEMIK -->
+        <div class="section-header" id="education">
+            <h2 class="section-title">🎓 Informasi Akademik</h2>
+        </div>
+        <div class="grid-cards">
+            <div class="card">
+                <h3>Universitas</h3>
+                <p><strong>Universitas Negeri Surabaya (UNESA)</strong></p>
+                <p>Prodi: S1 Pendidikan Teknologi Informasi</p>
+            </div>
+            <div class="card">
+                <h3>Mata Kuliah Utama</h3>
+                <ul>
+                    <li>Algoritma dan Pemrograman</li>
+                    <li>Basis Data & SQL (MariaDB)</li>
+                    <li>Sistem Operasi</li>
+                    <li>Teori Belajar</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- WHAT I CAN DO -->
+        <div class="section-header" id="what-i-can-do">
+            <h2 class="section-title">💻 What I Can Do</h2>
+        </div>
+        <div class="grid-cards">
+            <div class="card">
+                <h3>Pengembangan Web & Scripting</h3>
+                <p>Membangun struktur web HTML5 & CSS3 yang responsif serta menulis skrip otomatisasi tingkat dasar menggunakan Python.</p>
+            </div>
+            <div class="card">
+                <h3>Pengelolaan Database</h3>
+                <p>Merancang struktur tabel, ERD, dan mengeksekusi perintah SQL menggunakan MariaDB dan XAMPP.</p>
+            </div>
+        </div>
+
+        <!-- KEAHLIAN & TEKNOLOGI -->
+        <div class="section-header" id="skills">
+            <h2 class="section-title">🛠️ Keahlian & Alat</h2>
+        </div>
+        <div class="grid-cards">
+            <div class="card">
+                <h3>Pemrograman & Web</h3>
+                <p>HTML5, CSS3, Python, SQL (MariaDB & XAMPP)</p>
+            </div>
+            <div class="card">
+                <h3>Pemodelan & Sistem</h3>
+                <p>Git & GitHub, Visual Studio Code, draw.io (ERD & Flowchart), Virtualisasi (KVM, QEMU, Virt-Manager)</p>
+            </div>
+        </div>
+
+        <!-- KONTAK -->
+        <div class="section-header" id="contact">
+            <h2 class="section-title">📬 Kontak</h2>
+        </div>
+        <div class="grid-cards">
+            <div class="card">
+                <h3>Hubungi Saya</h3>
+                <p>Email: <a href="mailto:fajrulnabil885@gmail.com" style="color:#2563eb;">fajrulnabil885@gmail.com</a></p>
+                <p>Instagram: <a href="https://instagram.com/fajjoo0" target="_blank" style="color:#2563eb;">@fajjoo0</a></p>
+                <p>GitHub: <a href="https://github.com/fajrulnabil" target="_blank" style="color:#2563eb;">github.com/fajrulnabil</a></p>
+            </div>
+        </div>
 
     </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2026 Fajrul Falah Nabil Prasetyansyah. All rights reserved.</p>
+    </footer>
 
 </body>
 </html>
