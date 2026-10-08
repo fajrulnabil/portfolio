@@ -355,12 +355,22 @@
             line-height: 1.6;
         }
 
-        .card ul {
-            padding-left: 1.25rem;
+        .year-tag {
+            display: inline-block;
+            background-color: #eff6ff;
+            color: #2563eb;
+            font-size: 0.8rem;
+            font-weight: 700;
+            padding: 2px 10px;
+            border-radius: 12px;
+            margin-bottom: 0.5rem;
+            border: 1px solid #bfdbfe;
         }
 
-        .card li {
-            margin-bottom: 0.4rem;
+        body.dark-mode .year-tag {
+            background-color: #1e3a8a;
+            color: #93c5fd;
+            border-color: #1d4ed8;
         }
 
         /* --- IKON KONTAK INTERAKTIF --- */
@@ -531,23 +541,16 @@
         </div>
         <div class="grid-cards">
             <div class="card">
+                <span class="year-tag">2026 - Sekarang</span>
                 <h3>Pendidikan Tinggi</h3>
                 <p><strong>Universitas Negeri Surabaya (UNESA)</strong></p>
                 <p>S1 Pendidikan Teknologi Informasi</p>
             </div>
             <div class="card">
+                <span class="year-tag">2023 - 2026</span>
                 <h3>Pendidikan Menengah Atas</h3>
                 <p><strong>SMA Negeri 1 Trenggalek</strong></p>
                 <p>Jurusan IPA (Terapan)</p>
-            </div>
-            <div class="card">
-                <h3>Mata Kuliah Utama</h3>
-                <ul>
-                    <li>Algoritma dan Pemrograman</li>
-                    <li>Basis Data & SQL (MariaDB)</li>
-                    <li>Sistem Operasi</li>
-                    <li>Teori Belajar</li>
-                </ul>
             </div>
         </div>
 
