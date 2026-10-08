@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fajrul.dev | Portfolio</title>
+    <!-- Font Awesome Icon Kit -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         /* --- RESET & DASAR --- */
         * {
@@ -87,10 +89,6 @@
             background-color: #1e3a8a;
             color: #93c5fd;
             border-color: #1d4ed8;
-        }
-
-        body.dark-mode .contact-link {
-            color: #60a5fa;
         }
 
         /* --- HEADER / NAVBAR RESPONSIF --- */
@@ -242,7 +240,7 @@
             100% { transform: rotate(0deg); }
         }
 
-        /* ANIMASI KELUAR DARI KIRI KE KANAN DENGAN LOOP (DURASI 6 DETIK) */
+        /* ANIMASI SLIDE-IN LOOPING */
         .slide-in-loop {
             display: block;
             animation: slideFromLeft 6s ease-in-out infinite;
@@ -251,19 +249,19 @@
         @keyframes slideFromLeft {
             0% {
                 opacity: 0;
-                transform: translateX(-60px); /* Geser dari kiri luar */
+                transform: translateX(-60px);
             }
             15% {
                 opacity: 1;
-                transform: translateX(0); /* Posisi normal rapat */
+                transform: translateX(0);
             }
             80% {
                 opacity: 1;
-                transform: translateX(0); /* Tahan sebentar agar bisa dibaca */
+                transform: translateX(0);
             }
             92% {
                 opacity: 0;
-                transform: translateX(20px); /* Menghilang halus ke kanan */
+                transform: translateX(20px);
             }
             100% {
                 opacity: 0;
@@ -365,15 +363,56 @@
             margin-bottom: 0.4rem;
         }
 
-        .contact-link {
-            color: #2563eb;
-            font-weight: 600;
-            transition: color 0.2s ease, text-decoration 0.2s ease;
+        /* --- IKON KONTAK INTERAKTIF (LOGO SAJA) --- */
+        .social-icons-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 25px;
+            padding: 1.5rem 0;
         }
 
-        .contact-link:hover {
-            color: #1d4ed8;
-            text-decoration: underline;
+        .social-icon-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            background-color: #ffffff;
+            color: #334155;
+            font-size: 1.5rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            border: 1px solid #e2e8f0;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        body.dark-mode .social-icon-btn {
+            background-color: #1e293b;
+            color: #f8fafc;
+            border-color: #334155;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .social-icon-btn:hover {
+            transform: translateY(-6px) scale(1.1);
+            color: #ffffff;
+        }
+
+        /* Warna khas saat hover tiap medsos */
+        .social-icon-btn.instagram:hover {
+            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+            box-shadow: 0 8px 20px rgba(220, 39, 67, 0.35);
+        }
+
+        .social-icon-btn.email:hover {
+            background-color: #ea4335;
+            box-shadow: 0 8px 20px rgba(234, 67, 53, 0.35);
+        }
+
+        .social-icon-btn.github:hover {
+            background-color: #24292e;
+            box-shadow: 0 8px 20px rgba(36, 41, 46, 0.35);
         }
 
         /* --- FOOTER --- */
@@ -432,6 +471,12 @@
 
             .section-header {
                 margin: 2rem 0 1rem 0;
+            }
+
+            .social-icon-btn {
+                width: 50px;
+                height: 50px;
+                font-size: 1.3rem;
             }
         }
     </style>
@@ -532,17 +577,23 @@
             </div>
         </div>
 
-        <!-- KONTAK -->
+        <!-- KONTAK (HANYA LOGO/IKON) -->
         <div class="section-header" id="contact">
             <h2 class="section-title">📬 Kontak</h2>
         </div>
-        <div class="grid-cards">
-            <div class="card">
-                <h3>Hubungi Saya</h3>
-                <p>📷 Instagram: <a href="https://instagram.com/fajjoo0" target="_blank" class="contact-link">@fajjoo0</a></p>
-                <p>✉️ Email: <a href="mailto:fajrulnabil885@gmail.com" class="contact-link">fajrulnabil885@gmail.com</a></p>
-                <p>🐙 GitHub: <a href="https://github.com/fajrulnabil" target="_blank" class="contact-link">github.com/fajrulnabil</a></p>
-            </div>
+        <div class="social-icons-container">
+            <!-- Instagram -->
+            <a href="https://instagram.com/fajjoo0" target="_blank" class="social-icon-btn instagram" title="Instagram @fajjoo0">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <!-- Email -->
+            <a href="mailto:fajrulnabil885@gmail.com" class="social-icon-btn email" title="Kirim Email">
+                <i class="fas fa-envelope"></i>
+            </a>
+            <!-- GitHub -->
+            <a href="https://github.com/fajrulnabil" target="_blank" class="social-icon-btn github" title="GitHub @fajrulnabil">
+                <i class="fab fa-github"></i>
+            </a>
         </div>
 
     </div>
