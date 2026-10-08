@@ -242,18 +242,32 @@
             100% { transform: rotate(0deg); }
         }
 
-        .fade-in-text {
-            animation: fadeInUp 1s ease-out forwards;
+        /* ANIMASI KELUAR DARI KIRI KE KANAN DENGAN LOOP (DURASI 6 DETIK) */
+        .slide-in-loop {
+            display: block;
+            animation: slideFromLeft 6s ease-in-out infinite;
         }
 
-        @keyframes fadeInUp {
-            from {
+        @keyframes slideFromLeft {
+            0% {
                 opacity: 0;
-                transform: translateY(20px);
+                transform: translateX(-60px); /* Geser dari kiri luar */
             }
-            to {
+            15% {
                 opacity: 1;
-                transform: translateY(0);
+                transform: translateX(0); /* Posisi normal rapat */
+            }
+            80% {
+                opacity: 1;
+                transform: translateX(0); /* Tahan sebentar agar bisa dibaca */
+            }
+            92% {
+                opacity: 0;
+                transform: translateX(20px); /* Menghilang halus ke kanan */
+            }
+            100% {
+                opacity: 0;
+                transform: translateX(-60px);
             }
         }
 
@@ -452,9 +466,12 @@
                 <img src="foto.jpeg" alt="Foto Fajrul Falah Nabil Prasetyansyah" class="profile-img">
             </div>
 
-            <div class="main-info fade-in-text">
+            <div class="main-info">
                 <span class="maba-label">Mahasiswa Baru Informatika</span>
-                <h1>Halo, Saya <span class="wave-emoji">👋</span> <br> Fajrul Falah Nabil Prasetyansyah</h1>
+                <h1>
+                    <span class="slide-in-loop">Halo, Saya <span class="wave-emoji">👋</span></span>
+                    Fajrul Falah Nabil Prasetyansyah
+                </h1>
                 <p><strong>NIM:</strong> 26050974129 | <strong>Prodi:</strong> S1 Pendidikan Teknologi Informasi</p>
                 <p>📍 Universitas Negeri Surabaya (UNESA) | Asal Trenggalek</p>
                 
