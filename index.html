@@ -19,7 +19,33 @@
             scroll-behavior: smooth;
         }
 
-        /* Tema Default (Dark Mode Ala Referensi) */
+        /* --- ANIMASI PEMBUKA (FADE IN DARI GELAP) --- */
+        @keyframes pageFadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.98);
+                filter: brightness(0.2);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+                filter: brightness(1);
+            }
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            width: 100%;
+            overflow-x: hidden;
+            line-height: 1.6;
+            transition: background-color 0.4s ease, color 0.4s ease;
+            
+            /* Menjalankan animasi saat web pertama kali dibuka */
+            animation: pageFadeIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        /* Tema Default (Dark Mode) */
         :root {
             --bg-color: #0b0f17;
             --header-bg: rgba(11, 15, 23, 0.85);
@@ -49,15 +75,6 @@
             --btn-bg: #f1f5f9;
             --btn-text: #0f172a;
             --btn-border: #cbd5e1;
-        }
-
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            width: 100%;
-            overflow-x: hidden;
-            line-height: 1.6;
-            transition: background-color 0.4s ease, color 0.4s ease;
         }
 
         a {
@@ -230,7 +247,7 @@
             transform: translateY(-3px);
         }
 
-        /* Foto Profil Kanan/Tengah */
+        /* Foto Profil Kanan */
         .hero-center {
             z-index: 2;
             position: relative;
@@ -378,6 +395,65 @@
             box-shadow: 0 8px 20px rgba(36, 41, 46, 0.35);
         }
 
+        /* --- WIDGET PEMUTAR MUSIK MENGAPUNG (FLOATING MUSIC PLAYER) --- */
+        .music-widget {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background-color: var(--card-bg);
+            border: 1px solid var(--card-border);
+            padding: 10px 18px 10px 12px;
+            border-radius: 35px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(8px);
+            transition: all 0.3s ease;
+        }
+
+        .music-widget:hover {
+            transform: translateY(-4px);
+            border-color: var(--accent-blue);
+        }
+
+        .music-btn {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background-color: var(--accent-blue);
+            color: #ffffff;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .music-btn:hover {
+            background-color: var(--accent-hover);
+            transform: scale(1.1);
+        }
+
+        /* Animasi Berputar saat Lagu Berjalan */
+        .music-btn.playing i {
+            animation: spinMusic 3s linear infinite;
+        }
+
+        @keyframes spinMusic {
+            100% { transform: rotate(360deg); }
+        }
+
+        .music-text {
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--text-main);
+            letter-spacing: 0.3px;
+        }
+
         /* --- FOOTER --- */
         footer {
             border-top: 1px solid var(--card-border);
@@ -429,6 +505,12 @@
 
             .container {
                 padding: 1.5rem 1rem;
+            }
+
+            .music-widget {
+                bottom: 15px;
+                right: 15px;
+                padding: 8px 14px 8px 10px;
             }
         }
     </style>
@@ -550,22 +632,52 @@
 
     </div>
 
+    <!-- WIDGET PEMUTAR MUSIK MENGAPUNG -->
+    <div class="music-widget">
+        <button class="music-btn" id="music-toggle" title="Putar / Hentikan Musik">
+            <i class="fas fa-music" id="music-icon"></i>
+        </button>
+        <span class="music-text" id="music-status">Putar Musik 🎵</span>
+    </div>
+
+    <!-- ELEMEN AUDIO (Siapkan file lagu.mp3 di folder proyek) -->
+    <audio id="bg-music" src="lagu.mp3" loop></audio>
+
     <!-- FOOTER -->
     <footer>
         <p>&copy; 2026 Fajrul Falah Nabil Prasetyansyah. All rights reserved.</p>
     </footer>
 
-    <!-- JAVASCRIPT UNTUK MODE TERANG / GELAP -->
+    <!-- JAVASCRIPT LOGIK TEMA & MUSIK -->
     <script>
+        // --- 1. Mode Terang / Gelap ---
         const themeToggleBtn = document.getElementById('theme-toggle');
-        
         themeToggleBtn.addEventListener('click', () => {
             document.body.classList.toggle('light-mode');
-            
             if (document.body.classList.contains('light-mode')) {
                 themeToggleBtn.textContent = '🌙 Mode Gelap';
             } else {
                 themeToggleBtn.textContent = '☀️ Mode Terang';
+            }
+        });
+
+        // --- 2. Pemutar Musik Latar ---
+        const bgMusic = document.getElementById('bg-music');
+        const musicToggleBtn = document.getElementById('music-toggle');
+        const musicIcon = document.getElementById('music-icon');
+        const musicStatus = document.getElementById('music-status');
+
+        musicToggleBtn.addEventListener('click', () => {
+            if (bgMusic.paused) {
+                bgMusic.play();
+                musicToggleBtn.classList.add('playing');
+                musicIcon.className = 'fas fa-pause';
+                musicStatus.textContent = 'Memutar Musik...';
+            } else {
+                bgMusic.pause();
+                musicToggleBtn.classList.remove('playing');
+                musicIcon.className = 'fas fa-music';
+                musicStatus.textContent = 'Putar Musik 🎵';
             }
         });
     </script>
