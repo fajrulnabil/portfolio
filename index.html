@@ -19,7 +19,7 @@
             scroll-behavior: smooth;
         }
 
-        /* Tema Default (Dark Mode Ala Referensi Gambar) */
+        /* Tema Default (Dark Mode Ala Referensi) */
         :root {
             --bg-color: #0b0f17;
             --header-bg: rgba(11, 15, 23, 0.85);
@@ -133,7 +133,7 @@
             border-color: var(--accent-blue);
         }
 
-        /* --- HERO SECTION MODERN ALA REFERENSI --- */
+        /* --- HERO SECTION MODERN --- */
         .hero-container {
             position: relative;
             max-width: 1200px;
@@ -144,6 +144,7 @@
             justify-content: space-between;
             padding: 2rem;
             overflow: hidden;
+            gap: 2rem;
         }
 
         /* Watermark Teks Raksasa "PORTFOLIO" */
@@ -164,7 +165,8 @@
         /* Teks Kiri Hero */
         .hero-left {
             z-index: 3;
-            max-width: 480px;
+            max-width: 550px;
+            flex: 1;
         }
 
         .hero-left .greeting {
@@ -173,17 +175,11 @@
             margin-bottom: 0.5rem;
         }
 
-        .hero-left .name-highlight {
-            font-size: 3.2rem;
+        .hero-left .fullname {
+            font-size: 2.8rem;
             font-weight: 900;
             color: var(--accent-blue);
-            line-height: 1.1;
-            margin-bottom: 0.5rem;
-        }
-
-        .hero-left .fullname {
-            font-size: 2rem;
-            font-weight: 800;
+            line-height: 1.25;
             margin-bottom: 1.2rem;
         }
 
@@ -234,7 +230,7 @@
             transform: translateY(-3px);
         }
 
-        /* Foto Profil Tengah */
+        /* Foto Profil Kanan/Tengah */
         .hero-center {
             z-index: 2;
             position: relative;
@@ -245,8 +241,8 @@
 
         .hero-img-wrapper {
             position: relative;
-            width: 340px;
-            height: 420px;
+            width: 360px;
+            height: 450px;
             border-radius: 20px;
             overflow: hidden;
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
@@ -263,29 +259,6 @@
             height: 100%;
             object-fit: cover;
             display: block;
-        }
-
-        /* Teks Kanan Hero */
-        .hero-right {
-            z-index: 3;
-            text-align: right;
-        }
-
-        .hero-right .role-subtitle {
-            font-size: 1rem;
-            font-weight: 700;
-            color: var(--accent-blue);
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            margin-bottom: 0.3rem;
-        }
-
-        .hero-right .role-main {
-            font-size: 2.2rem;
-            font-weight: 900;
-            line-height: 1.1;
-            text-transform: uppercase;
-            letter-spacing: 1px;
         }
 
         /* --- MAIN CONTENT LAYOUT --- */
@@ -424,10 +397,6 @@
                 padding-top: 3rem;
             }
 
-            .hero-right {
-                text-align: center;
-            }
-
             .watermark {
                 font-size: 20vw;
             }
@@ -437,12 +406,8 @@
                 height: 350px;
             }
 
-            .hero-left .name-highlight {
-                font-size: 2.5rem;
-            }
-
             .hero-left .fullname {
-                font-size: 1.6rem;
+                font-size: 2rem;
             }
 
             .hero-action-btns {
@@ -497,8 +462,7 @@
         <!-- Sisi Kiri -->
         <div class="hero-left">
             <div class="greeting">Hi I'm 👋</div>
-            <div class="name-highlight">Fajrul</div>
-            <div class="fullname">Falah Nabil P.</div>
+            <div class="fullname">Fajrul Falah Nabil Prasetyansyah</div>
             <p class="description">
                 Mahasiswa S1 Pendidikan Teknologi Informasi UNESA yang tekun mempelajari Pemrograman Web, Manajemen Basis Data, dan Dasar Sistem Operasi.
             </p>
@@ -508,17 +472,11 @@
             </div>
         </div>
 
-        <!-- Foto Tengah -->
+        <!-- Foto Kanan -->
         <div class="hero-center">
             <div class="hero-img-wrapper">
                 <img src="foto.jpeg" alt="Fajrul Falah Nabil Prasetyansyah" class="hero-img">
             </div>
-        </div>
-
-        <!-- Sisi Kanan -->
-        <div class="hero-right">
-            <div class="role-subtitle">MABA INFORMATIKA</div>
-            <div class="role-main">WEB<br>DEVELOPER</div>
         </div>
     </div>
 
