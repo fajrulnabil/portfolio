@@ -19,7 +19,7 @@
             scroll-behavior: smooth;
         }
 
-        /* --- ANIMASI PEMBUKA (FADE IN DARI GELAP) --- */
+        /* --- ANIMASI PEMBUKA HALAMAN --- */
         @keyframes pageFadeIn {
             from {
                 opacity: 0;
@@ -148,7 +148,7 @@
             border-color: var(--accent-blue);
         }
 
-        /* --- HERO SECTION MODERN --- */
+        /* --- HERO SECTION MODERN & ANIMASI KEMUNCULAN --- */
         .hero-container {
             position: relative;
             max-width: 1200px;
@@ -177,7 +177,19 @@
             white-space: nowrap;
         }
 
-        /* Teks Kiri Hero */
+        /* Definisi Keyframes Animasi Muncul dari Bawah ke Atas (Fade Up) */
+        @keyframes fadeUpIn {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Teks Kiri Hero dengan Delay Berurutan */
         .hero-left {
             z-index: 3;
             max-width: 550px;
@@ -188,6 +200,8 @@
             font-size: 2rem;
             font-weight: 700;
             margin-bottom: 0.5rem;
+            opacity: 0;
+            animation: fadeUpIn 0.8s ease 0.3s forwards;
         }
 
         .hero-left .fullname {
@@ -196,6 +210,8 @@
             color: var(--accent-blue);
             line-height: 1.25;
             margin-bottom: 1.2rem;
+            opacity: 0;
+            animation: fadeUpIn 0.8s ease 0.5s forwards;
         }
 
         .hero-left .description {
@@ -203,12 +219,16 @@
             font-size: 0.95rem;
             margin-bottom: 2rem;
             line-height: 1.7;
+            opacity: 0;
+            animation: fadeUpIn 0.8s ease 0.7s forwards;
         }
 
         .hero-action-btns {
             display: flex;
             gap: 15px;
             flex-wrap: wrap;
+            opacity: 0;
+            animation: fadeUpIn 0.8s ease 0.9s forwards;
         }
 
         .btn-primary, .btn-secondary {
@@ -245,13 +265,26 @@
             transform: translateY(-3px);
         }
 
-        /* Foto Profil Kanan */
+        /* Foto Profil Kanan dengan Animasi Khusus Muncul */
         .hero-center {
             z-index: 2;
             position: relative;
             display: flex;
             justify-content: center;
             align-items: center;
+            opacity: 0;
+            animation: scaleInPhoto 1s cubic-bezier(0.16, 1, 0.3, 1) 0.6s forwards;
+        }
+
+        @keyframes scaleInPhoto {
+            from {
+                opacity: 0;
+                transform: scale(0.85) translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
         }
 
         .hero-img-wrapper {
@@ -393,12 +426,12 @@
             box-shadow: 0 8px 20px rgba(36, 41, 46, 0.35);
         }
 
-        /* --- WIDGET PEMUTAR MUSIK MELAYANG (FIXED STICKY DARI ATAS KE BAWAH) --- */
+        /* --- WIDGET PEMUTAR MUSIK MELAYANG (STICKY FLOATING) --- */
         .music-widget {
             position: fixed;
             bottom: 25px;
             right: 25px;
-            z-index: 99999; /* Selalu di atas elemen apapun */
+            z-index: 99999;
             display: flex;
             align-items: center;
             gap: 12px;
@@ -433,7 +466,6 @@
             transition: transform 0.3s ease;
         }
 
-        /* Label Tengah Piringan Hitam */
         .vinyl-center {
             width: 14px;
             height: 14px;
@@ -443,7 +475,6 @@
             z-index: 2;
         }
 
-        /* Ikon Play/Pause Overlap */
         .vinyl-icon {
             position: absolute;
             color: #ffffff;
@@ -452,7 +483,6 @@
             text-shadow: 0 0 4px rgba(0,0,0,0.8);
         }
 
-        /* Animasi Piringan Hitam Berputar nonstop */
         .music-widget.playing .vinyl-record {
             animation: spinVinyl 3.5s linear infinite;
         }
@@ -477,7 +507,6 @@
             gap: 6px;
         }
 
-        /* Animasi Soundwave / Gelombang Suara Naik Turun */
         .soundwave {
             display: flex;
             align-items: flex-end;
@@ -589,7 +618,7 @@
         <!-- Watermark Latar -->
         <div class="watermark">PORTFOLIO</div>
 
-        <!-- Sisi Kiri -->
+        <!-- Sisi Kiri (Teks muncul berurutan dari bawah ke atas) -->
         <div class="hero-left">
             <div class="greeting">Hi I'm 👋</div>
             <div class="fullname">Fajrul Falah Nabil Prasetyansyah</div>
@@ -602,7 +631,7 @@
             </div>
         </div>
 
-        <!-- Foto Kanan -->
+        <!-- Foto Kanan (Muncul dengan efek scale & fade elegan sesudahnya) -->
         <div class="hero-center">
             <div class="hero-img-wrapper">
                 <img src="foto.jpeg" alt="Fajrul Falah Nabil Prasetyansyah" class="hero-img">
@@ -725,33 +754,28 @@
         const musicIcon = document.getElementById('music-icon');
         const musicStatus = document.getElementById('music-status');
 
-        // Fungsi coba putar otomatis
         function startAudio() {
             bgMusic.play().then(() => {
                 musicWidget.classList.add('playing');
                 musicIcon.className = 'fas fa-pause vinyl-icon';
                 musicStatus.textContent = 'Memutar Musik';
             }).catch(error => {
-                // Kebijakan browser (Autoplay Policy) memblokir audio sebelum interaksi pertama
                 musicWidget.classList.remove('playing');
                 musicIcon.className = 'fas fa-play vinyl-icon';
                 musicStatus.textContent = 'Putar Musik 🎵';
             });
         }
 
-        // Jalankan audio otomatis saat dibuka
         window.addEventListener('DOMContentLoaded', startAudio);
 
-        // Jika browser memblokir autoplay, klik pertama di mana saja di layar akan menyalakan lagunya
         document.body.addEventListener('click', () => {
             if (bgMusic.paused && !musicWidget.dataset.userPaused) {
                 startAudio();
             }
         }, { once: true });
 
-        // Tombol Toggle Musik
         musicWidget.addEventListener('click', (e) => {
-            e.stopPropagation(); // Mencegah event body click
+            e.stopPropagation();
             if (bgMusic.paused) {
                 bgMusic.play();
                 musicWidget.classList.add('playing');
