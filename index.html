@@ -19,31 +19,74 @@
             scroll-behavior: smooth;
         }
 
-        /* --- ANIMASI PEMBUKA HALAMAN --- */
-        @keyframes pageFadeIn {
-            from {
-                opacity: 0;
-                transform: scale(0.98);
-                filter: brightness(0.2);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1);
-                filter: brightness(1);
-            }
-        }
-
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-main);
+        /* --- ANIMASI OPENING SCREEN (INTRO LOADER) --- */
+        #intro-loader {
+            position: fixed;
+            top: 0;
+            left: 0;
             width: 100%;
-            overflow-x: hidden;
-            line-height: 1.6;
-            transition: background-color 0.4s ease, color 0.4s ease;
-            animation: pageFadeIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            height: 100vh;
+            background-color: #070a11;
+            z-index: 999999;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: #ffffff;
+            transition: transform 0.8s cubic-bezier(0.77, 0, 0.175, 1), opacity 0.8s ease;
         }
 
-        /* Tema Default (Dark Mode) */
+        /* Teks Logo Brand di Opening */
+        .intro-brand {
+            font-size: 2.2rem;
+            font-weight: 900;
+            color: #3b82f6;
+            letter-spacing: 2px;
+            margin-bottom: 0.8rem;
+            animation: pulseGlow 2s infinite alternate;
+        }
+
+        @keyframes pulseGlow {
+            from { text-shadow: 0 0 10px rgba(59, 130, 246, 0.4); }
+            to { text-shadow: 0 0 25px rgba(59, 130, 246, 0.9); }
+        }
+
+        /* Teks Subtitle Typewriter */
+        .intro-subtitle {
+            font-size: 1.05rem;
+            color: #94a3b8;
+            letter-spacing: 1.5px;
+            margin-bottom: 2rem;
+            font-weight: 500;
+            min-height: 1.6rem;
+        }
+
+        /* Progress Bar Container */
+        .loader-bar-bg {
+            width: 220px;
+            height: 4px;
+            background-color: #1e293b;
+            border-radius: 4px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .loader-bar-fill {
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(90deg, #2563eb, #60a5fa);
+            border-radius: 4px;
+            transition: width 0.1s linear;
+        }
+
+        /* Kelas untuk Menghilangkan Opening saat Selesai */
+        #intro-loader.fade-out {
+            transform: translateY(-100%);
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        /* --- TEMA WEBSITE --- */
         :root {
             --bg-color: #0b0f17;
             --header-bg: rgba(11, 15, 23, 0.85);
@@ -59,7 +102,6 @@
             --btn-border: #334155;
         }
 
-        /* Tema Light Mode */
         body.light-mode {
             --bg-color: #f8fafc;
             --header-bg: rgba(255, 255, 255, 0.85);
@@ -73,6 +115,15 @@
             --btn-bg: #f1f5f9;
             --btn-text: #0f172a;
             --btn-border: #cbd5e1;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            width: 100%;
+            overflow-x: hidden;
+            line-height: 1.6;
+            transition: background-color 0.4s ease, color 0.4s ease;
         }
 
         a {
@@ -162,7 +213,6 @@
             gap: 2rem;
         }
 
-        /* Watermark Teks Raksasa "PORTFOLIO" */
         .watermark {
             position: absolute;
             top: 50%;
@@ -177,7 +227,6 @@
             white-space: nowrap;
         }
 
-        /* Definisi Keyframes Animasi Muncul dari Bawah ke Atas (Fade Up) */
         @keyframes fadeUpIn {
             from {
                 opacity: 0;
@@ -189,19 +238,45 @@
             }
         }
 
-        /* Teks Kiri Hero dengan Delay Berurutan */
         .hero-left {
             z-index: 3;
             max-width: 550px;
             flex: 1;
         }
 
+        /* Animasi Muncul Konten Setelah Opening Selesai */
+        body.loaded .hero-left .greeting {
+            animation: fadeUpIn 0.8s ease 0.1s forwards;
+        }
+
+        body.loaded .hero-left .fullname {
+            animation: fadeUpIn 0.8s ease 0.3s forwards;
+        }
+
+        body.loaded .hero-left .description {
+            animation: fadeUpIn 0.8s ease 0.5s forwards;
+        }
+
+        body.loaded .hero-left .hero-action-btns {
+            animation: fadeUpIn 0.8s ease 0.7s forwards;
+        }
+
+        body.loaded .hero-center {
+            animation: scaleInPhoto 1s cubic-bezier(0.16, 1, 0.3, 1) 0.4s forwards;
+        }
+
+        .hero-left .greeting,
+        .hero-left .fullname,
+        .hero-left .description,
+        .hero-left .hero-action-btns,
+        .hero-center {
+            opacity: 0; /* Tersembunyi sebelum opening selesai */
+        }
+
         .hero-left .greeting {
             font-size: 2rem;
             font-weight: 700;
             margin-bottom: 0.5rem;
-            opacity: 0;
-            animation: fadeUpIn 0.8s ease 0.3s forwards;
         }
 
         .hero-left .fullname {
@@ -210,8 +285,6 @@
             color: var(--accent-blue);
             line-height: 1.25;
             margin-bottom: 1.2rem;
-            opacity: 0;
-            animation: fadeUpIn 0.8s ease 0.5s forwards;
         }
 
         .hero-left .description {
@@ -219,16 +292,12 @@
             font-size: 0.95rem;
             margin-bottom: 2rem;
             line-height: 1.7;
-            opacity: 0;
-            animation: fadeUpIn 0.8s ease 0.7s forwards;
         }
 
         .hero-action-btns {
             display: flex;
             gap: 15px;
             flex-wrap: wrap;
-            opacity: 0;
-            animation: fadeUpIn 0.8s ease 0.9s forwards;
         }
 
         .btn-primary, .btn-secondary {
@@ -265,15 +334,13 @@
             transform: translateY(-3px);
         }
 
-        /* Foto Profil Kanan dengan Animasi Khusus Muncul */
+        /* Foto Profil Kanan */
         .hero-center {
             z-index: 2;
             position: relative;
             display: flex;
             justify-content: center;
             align-items: center;
-            opacity: 0;
-            animation: scaleInPhoto 1s cubic-bezier(0.16, 1, 0.3, 1) 0.6s forwards;
         }
 
         @keyframes scaleInPhoto {
@@ -426,7 +493,7 @@
             box-shadow: 0 8px 20px rgba(36, 41, 46, 0.35);
         }
 
-        /* --- WIDGET PEMUTAR MUSIK MELAYANG (STICKY FLOATING) --- */
+        /* --- WIDGET PEMUTAR MUSIK MELAYANG --- */
         .music-widget {
             position: fixed;
             bottom: 25px;
@@ -451,7 +518,6 @@
             box-shadow: 0 12px 35px rgba(59, 130, 246, 0.25);
         }
 
-        /* Tampilan Piringan Hitam (Vinyl Record) */
         .vinyl-record {
             position: relative;
             width: 44px;
@@ -594,6 +660,15 @@
 </head>
 <body>
 
+    <!-- LAYAR ANIMASI OPENING (INTRO LOADER) -->
+    <div id="intro-loader">
+        <div class="intro-brand">&lt;FAJRUL.DEV/&gt;</div>
+        <div class="intro-subtitle" id="typewriter-text"></div>
+        <div class="loader-bar-bg">
+            <div class="loader-bar-fill" id="loader-bar"></div>
+        </div>
+    </div>
+
     <!-- HEADER / NAVBAR -->
     <header>
         <div class="nav-container">
@@ -618,7 +693,7 @@
         <!-- Watermark Latar -->
         <div class="watermark">PORTFOLIO</div>
 
-        <!-- Sisi Kiri (Teks muncul berurutan dari bawah ke atas) -->
+        <!-- Sisi Kiri -->
         <div class="hero-left">
             <div class="greeting">Hi I'm 👋</div>
             <div class="fullname">Fajrul Falah Nabil Prasetyansyah</div>
@@ -631,7 +706,7 @@
             </div>
         </div>
 
-        <!-- Foto Kanan (Muncul dengan efek scale & fade elegan sesudahnya) -->
+        <!-- Foto Kanan -->
         <div class="hero-center">
             <div class="hero-img-wrapper">
                 <img src="foto.jpeg" alt="Fajrul Falah Nabil Prasetyansyah" class="hero-img">
@@ -735,9 +810,47 @@
         <p>&copy; 2026 Fajrul Falah Nabil Prasetyansyah. All rights reserved.</p>
     </footer>
 
-    <!-- JAVASCRIPT LOGIK TEMA & AUTOPLAY MUSIK -->
+    <!-- JAVASCRIPT LOGIK OPENING, TEMA, & AUTOPLAY MUSIK -->
     <script>
-        // --- 1. Mode Terang / Gelap ---
+        // --- 1. SCRIPT ANIMASI OPENING (INTRO LOADER) ---
+        const introLoader = document.getElementById('intro-loader');
+        const loaderBar = document.getElementById('loader-bar');
+        const typewriterText = document.getElementById('typewriter-text');
+        
+        const message = "Welcome to My Portfolio...";
+        let charIndex = 0;
+
+        // Efek Pengetikan Teks Pembuka
+        function typeWriter() {
+            if (charIndex < message.length) {
+                typewriterText.textContent += message.charAt(charIndex);
+                charIndex++;
+                setTimeout(typeWriter, 50);
+            }
+        }
+
+        // Jalankan animasi loading bar (0% - 100%)
+        let progress = 0;
+        typeWriter();
+        
+        const loadingInterval = setInterval(() => {
+            progress += 2;
+            loaderBar.style.width = progress + '%';
+
+            if (progress >= 100) {
+                clearInterval(loadingInterval);
+                setTimeout(() => {
+                    // Sembunyikan Layar Opening
+                    introLoader.classList.add('fade-out');
+                    document.body.classList.add('loaded');
+                    
+                    // Coba jalankan musik otomatis setelah opening selesai
+                    startAudio();
+                }, 400);
+            }
+        }, 30);
+
+        // --- 2. Mode Terang / Gelap ---
         const themeToggleBtn = document.getElementById('theme-toggle');
         themeToggleBtn.addEventListener('click', () => {
             document.body.classList.toggle('light-mode');
@@ -748,7 +861,7 @@
             }
         });
 
-        // --- 2. Pemutar Musik Autoplay & Interaktif ---
+        // --- 3. Pemutar Musik Autoplay & Interaktif ---
         const bgMusic = document.getElementById('bg-music');
         const musicWidget = document.getElementById('music-widget-btn');
         const musicIcon = document.getElementById('music-icon');
@@ -765,8 +878,6 @@
                 musicStatus.textContent = 'Putar Musik 🎵';
             });
         }
-
-        window.addEventListener('DOMContentLoaded', startAudio);
 
         document.body.addEventListener('click', () => {
             if (bgMusic.paused && !musicWidget.dataset.userPaused) {
