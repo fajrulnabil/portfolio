@@ -36,12 +36,12 @@
             transition: transform 0.8s cubic-bezier(0.77, 0, 0.175, 1), opacity 0.8s ease;
         }
 
-        /* Teks Logo Brand di Opening */
+        /* Teks Brand di Opening (Sudah diubah ke PORTOFOLIO) */
         .intro-brand {
             font-size: 2.2rem;
             font-weight: 900;
             color: #3b82f6;
-            letter-spacing: 2px;
+            letter-spacing: 4px;
             margin-bottom: 0.8rem;
             animation: pulseGlow 2s infinite alternate;
         }
@@ -244,7 +244,6 @@
             flex: 1;
         }
 
-        /* Animasi Muncul Konten Setelah Opening Selesai */
         body.loaded .hero-left .greeting {
             animation: fadeUpIn 0.8s ease 0.1s forwards;
         }
@@ -270,7 +269,7 @@
         .hero-left .description,
         .hero-left .hero-action-btns,
         .hero-center {
-            opacity: 0; /* Tersembunyi sebelum opening selesai */
+            opacity: 0;
         }
 
         .hero-left .greeting {
@@ -662,7 +661,7 @@
 
     <!-- LAYAR ANIMASI OPENING (INTRO LOADER) -->
     <div id="intro-loader">
-        <div class="intro-brand">&lt;FAJRUL.DEV/&gt;</div>
+        <div class="intro-brand">PORTOFOLIO</div>
         <div class="intro-subtitle" id="typewriter-text"></div>
         <div class="loader-bar-bg">
             <div class="loader-bar-fill" id="loader-bar"></div>
@@ -820,7 +819,6 @@
         const message = "Welcome to My Portfolio...";
         let charIndex = 0;
 
-        // Efek Pengetikan Teks Pembuka
         function typeWriter() {
             if (charIndex < message.length) {
                 typewriterText.textContent += message.charAt(charIndex);
@@ -829,7 +827,6 @@
             }
         }
 
-        // Jalankan animasi loading bar (0% - 100%)
         let progress = 0;
         typeWriter();
         
@@ -840,11 +837,8 @@
             if (progress >= 100) {
                 clearInterval(loadingInterval);
                 setTimeout(() => {
-                    // Sembunyikan Layar Opening
                     introLoader.classList.add('fade-out');
                     document.body.classList.add('loaded');
-                    
-                    // Coba jalankan musik otomatis setelah opening selesai
                     startAudio();
                 }, 400);
             }
