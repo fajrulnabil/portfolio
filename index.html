@@ -36,7 +36,6 @@
             transition: transform 0.8s cubic-bezier(0.77, 0, 0.175, 1), opacity 0.8s ease;
         }
 
-        /* Teks Brand di Opening (Sudah diubah ke PORTOFOLIO) */
         .intro-brand {
             font-size: 2.2rem;
             font-weight: 900;
@@ -51,7 +50,6 @@
             to { text-shadow: 0 0 25px rgba(59, 130, 246, 0.9); }
         }
 
-        /* Teks Subtitle Typewriter */
         .intro-subtitle {
             font-size: 1.05rem;
             color: #94a3b8;
@@ -61,7 +59,6 @@
             min-height: 1.6rem;
         }
 
-        /* Progress Bar Container */
         .loader-bar-bg {
             width: 220px;
             height: 4px;
@@ -79,7 +76,6 @@
             transition: width 0.1s linear;
         }
 
-        /* Kelas untuk Menghilangkan Opening saat Selesai */
         #intro-loader.fade-out {
             transform: translateY(-100%);
             opacity: 0;
@@ -673,7 +669,7 @@
         <div class="nav-container">
             <a href="#" class="logo-container">
                 <span>&lt;/&gt;</span>
-                <span>FAJRUL.DEV</span>
+                <span>PORTOFOLIO</span>
             </a>
             
             <ul class="nav-links">
@@ -690,7 +686,7 @@
     <!-- HERO SECTION MODERN -->
     <div class="hero-container" id="home">
         <!-- Watermark Latar -->
-        <div class="watermark">PORTFOLIO</div>
+        <div class="watermark">PORTOFOLIO</div>
 
         <!-- Sisi Kiri -->
         <div class="hero-left">
@@ -811,7 +807,6 @@
 
     <!-- JAVASCRIPT LOGIK OPENING, TEMA, & AUTOPLAY MUSIK -->
     <script>
-        // --- 1. SCRIPT ANIMASI OPENING (INTRO LOADER) ---
         const introLoader = document.getElementById('intro-loader');
         const loaderBar = document.getElementById('loader-bar');
         const typewriterText = document.getElementById('typewriter-text');
@@ -844,7 +839,6 @@
             }
         }, 30);
 
-        // --- 2. Mode Terang / Gelap ---
         const themeToggleBtn = document.getElementById('theme-toggle');
         themeToggleBtn.addEventListener('click', () => {
             document.body.classList.toggle('light-mode');
@@ -855,7 +849,6 @@
             }
         });
 
-        // --- 3. Pemutar Musik Autoplay & Interaktif ---
         const bgMusic = document.getElementById('bg-music');
         const musicWidget = document.getElementById('music-widget-btn');
         const musicIcon = document.getElementById('music-icon');
