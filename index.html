@@ -444,13 +444,14 @@
             margin-bottom: 0.8rem;
         }
 
-        /* --- KONTAK --- */
+        /* --- KONTAK (SOSMED IKON) --- */
         .social-icons-container {
             display: flex;
             justify-content: center;
             align-items: center;
             gap: 25px;
             padding: 2rem 0;
+            flex-wrap: wrap;
         }
 
         .social-icon-btn {
@@ -485,6 +486,11 @@
         .social-icon-btn.github:hover {
             background-color: #24292e;
             box-shadow: 0 8px 20px rgba(36, 41, 46, 0.35);
+        }
+
+        .social-icon-btn.linkedin:hover {
+            background-color: #0a66c2;
+            box-shadow: 0 8px 20px rgba(10, 102, 194, 0.35);
         }
 
         /* --- WIDGET PEMUTAR MUSIK MELAYANG --- */
@@ -762,14 +768,21 @@
             <h2 class="section-title">📬 Kontak</h2>
         </div>
         <div class="social-icons-container">
+            <!-- Instagram -->
             <a href="https://instagram.com/fajjoo0" target="_blank" class="social-icon-btn instagram" title="Instagram @fajjoo0">
                 <i class="fab fa-instagram"></i>
             </a>
+            <!-- Email -->
             <a href="mailto:fajrulnabil885@gmail.com" class="social-icon-btn email" title="Kirim Email">
                 <i class="fas fa-envelope"></i>
             </a>
+            <!-- GitHub -->
             <a href="https://github.com/fajrulnabil" target="_blank" class="social-icon-btn github" title="GitHub @fajrulnabil">
                 <i class="fab fa-github"></i>
+            </a>
+            <!-- LinkedIn -->
+            <a href="https://www.linkedin.com/in/fajrul-falah-nabil-prasetyansyah-082316441?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" class="social-icon-btn linkedin" title="LinkedIn Profile">
+                <i class="fab fa-linkedin-in"></i>
             </a>
         </div>
 
