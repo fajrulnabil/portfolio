@@ -92,7 +92,7 @@
             --text-sub: #94a3b8;
             --accent-blue: #3b82f6;
             --accent-hover: #2563eb;
-            --watermark-text: rgba(255, 255, 255, 0.03);
+            --watermark-text: rgba(255, 255, 255, 0.035);
             --btn-bg: #1e293b;
             --btn-text: #ffffff;
             --btn-border: #334155;
@@ -107,7 +107,7 @@
             --text-sub: #475569;
             --accent-blue: #2563eb;
             --accent-hover: #1d4ed8;
-            --watermark-text: rgba(0, 0, 0, 0.04);
+            --watermark-text: rgba(0, 0, 0, 0.045);
             --btn-bg: #f1f5f9;
             --btn-text: #0f172a;
             --btn-border: #cbd5e1;
@@ -194,7 +194,7 @@
             border-color: var(--accent-blue);
         }
 
-        /* --- HERO SECTION MODERN & ANIMASI KEMUNCULAN --- */
+        /* --- HERO SECTION MODERN --- */
         .hero-container {
             position: relative;
             max-width: 1200px;
@@ -208,20 +208,46 @@
             gap: 2rem;
         }
 
-        .watermark {
+        /* --- WATERMARK RUNNING TEXT (MARQUEE BERJALAN NONSTOP) --- */
+        .watermark-wrapper {
             position: absolute;
             top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 14vw;
-            font-weight: 900;
-            color: var(--watermark-text);
-            letter-spacing: 12px;
-            user-select: none;
+            left: 0;
+            width: 100%;
+            transform: translateY(-50%);
+            overflow: hidden;
             z-index: 1;
+            pointer-events: none;
             white-space: nowrap;
         }
 
+        .watermark-track {
+            display: inline-block;
+            white-space: nowrap;
+            animation: marqueeMove 20s linear infinite;
+        }
+
+        .watermark-text {
+            display: inline-block;
+            font-size: 14vw;
+            font-weight: 900;
+            color: var(--watermark-text);
+            letter-spacing: 20px;
+            user-select: none;
+            text-transform: uppercase;
+            padding-right: 50px;
+        }
+
+        @keyframes marqueeMove {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        /* ANIMASI KEMUNCULAN KONTEN HERO */
         @keyframes fadeUpIn {
             from {
                 opacity: 0;
@@ -647,7 +673,7 @@
                 padding-top: 3rem;
             }
 
-            .watermark {
+            .watermark-text {
                 font-size: 20vw;
             }
 
@@ -723,8 +749,13 @@
 
     <!-- HERO SECTION MODERN -->
     <div class="hero-container" id="home">
-        <!-- Watermark Latar -->
-        <div class="watermark">PORTOFOLIO</div>
+        <!-- Watermark Running Text Berjalan Transparan -->
+        <div class="watermark-wrapper">
+            <div class="watermark-track">
+                <span class="watermark-text">PORTOFOLIO • PORTOFOLIO • PORTOFOLIO • PORTOFOLIO • </span>
+                <span class="watermark-text">PORTOFOLIO • PORTOFOLIO • PORTOFOLIO • PORTOFOLIO • </span>
+            </div>
+        </div>
 
         <!-- Sisi Kiri -->
         <div class="hero-left">
