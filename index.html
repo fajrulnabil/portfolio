@@ -19,14 +19,14 @@
             scroll-behavior: smooth;
         }
 
-        /* --- ANIMASI OPENING SCREEN (INTRO LOADER) --- */
+        /* --- ANIMASI OPENING SCREEN DENGAN EFEK PETIR BIRU --- */
         #intro-loader {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100vh;
-            background-color: #070a11;
+            background-color: #05070c;
             z-index: 999999;
             display: flex;
             flex-direction: column;
@@ -34,20 +34,71 @@
             align-items: center;
             color: #ffffff;
             transition: transform 0.8s cubic-bezier(0.77, 0, 0.175, 1), opacity 0.8s ease;
+            overflow: hidden;
+        }
+
+        /* Efek Kilatan Petir Biru di Background Loader */
+        #intro-loader::before {
+            content: '';
+            position: absolute;
+            width: 150%;
+            height: 150%;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.25) 0%, transparent 60%);
+            animation: lightningFlash 2.5s infinite ease-in-out;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        @keyframes lightningFlash {
+            0%, 100% { opacity: 0.1; transform: scale(0.9); }
+            15% { opacity: 0.9; transform: scale(1.1); filter: drop-shadow(0 0 35px #3b82f6); }
+            20% { opacity: 0.2; transform: scale(0.95); }
+            45% { opacity: 0.8; transform: scale(1.05); filter: drop-shadow(0 0 50px #60a5fa); }
+            50% { opacity: 0.1; transform: scale(0.9); }
+            75% { opacity: 0.7; transform: scale(1.08); filter: drop-shadow(0 0 30px #2563eb); }
+            80% { opacity: 0.3; }
+        }
+
+        /* Garis Sambaran Petir Bergerak */
+        .lightning-bolt {
+            position: absolute;
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent, #60a5fa, transparent);
+            box-shadow: 0 0 15px #3b82f6, 0 0 30px #2563eb;
+            animation: boltMove 1.5s infinite linear;
+            opacity: 0.4;
+            z-index: 1;
+        }
+
+        @keyframes boltMove {
+            0% { transform: translateY(-100%) rotate(25deg); opacity: 0; }
+            50% { opacity: 0.8; }
+            100% { transform: translateY(100%) rotate(25deg); opacity: 0; }
+        }
+
+        /* Elemen di dalam Loader (di atas efek petir) */
+        .intro-content {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .intro-brand {
-            font-size: 2.2rem;
+            font-size: 2.3rem;
             font-weight: 900;
-            color: #3b82f6;
-            letter-spacing: 4px;
+            color: #60a5fa;
+            letter-spacing: 5px;
             margin-bottom: 0.8rem;
-            animation: pulseGlow 2s infinite alternate;
+            text-shadow: 0 0 20px rgba(59, 130, 246, 0.8);
+            animation: pulseGlow 1.5s infinite alternate;
         }
 
         @keyframes pulseGlow {
-            from { text-shadow: 0 0 10px rgba(59, 130, 246, 0.4); }
-            to { text-shadow: 0 0 25px rgba(59, 130, 246, 0.9); }
+            from { text-shadow: 0 0 10px rgba(59, 130, 246, 0.4); transform: scale(1); }
+            to { text-shadow: 0 0 30px rgba(96, 165, 250, 1); transform: scale(1.02); }
         }
 
         .intro-subtitle {
@@ -66,6 +117,7 @@
             border-radius: 4px;
             overflow: hidden;
             position: relative;
+            box-shadow: 0 0 10px rgba(59, 130, 246, 0.3);
         }
 
         .loader-bar-fill {
@@ -73,6 +125,7 @@
             height: 100%;
             background: linear-gradient(90deg, #2563eb, #60a5fa);
             border-radius: 4px;
+            box-shadow: 0 0 12px #3b82f6;
             transition: width 0.1s linear;
         }
 
@@ -208,7 +261,7 @@
             gap: 2rem;
         }
 
-        /* --- WATERMARK RUNNING TEXT (MARQUEE BERJALAN NONSTOP) --- */
+        /* --- WATERMARK RUNNING TEXT --- */
         .watermark-wrapper {
             position: absolute;
             top: 50%;
@@ -239,24 +292,14 @@
         }
 
         @keyframes marqueeMove {
-            0% {
-                transform: translateX(0);
-            }
-            100% {
-                transform: translateX(-50%);
-            }
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
         }
 
         /* ANIMASI KEMUNCULAN KONTEN HERO */
         @keyframes fadeUpIn {
-            from {
-                opacity: 0;
-                transform: translateY(40px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .hero-left {
@@ -265,25 +308,11 @@
             flex: 1;
         }
 
-        body.loaded .hero-left .greeting {
-            animation: fadeUpIn 0.8s ease 0.1s forwards;
-        }
-
-        body.loaded .hero-left .fullname {
-            animation: fadeUpIn 0.8s ease 0.3s forwards;
-        }
-
-        body.loaded .hero-left .description {
-            animation: fadeUpIn 0.8s ease 0.5s forwards;
-        }
-
-        body.loaded .hero-left .hero-action-btns {
-            animation: fadeUpIn 0.8s ease 0.7s forwards;
-        }
-
-        body.loaded .hero-center {
-            animation: scaleInPhoto 1s cubic-bezier(0.16, 1, 0.3, 1) 0.4s forwards;
-        }
+        body.loaded .hero-left .greeting { animation: fadeUpIn 0.8s ease 0.1s forwards; }
+        body.loaded .hero-left .fullname { animation: fadeUpIn 0.8s ease 0.3s forwards; }
+        body.loaded .hero-left .description { animation: fadeUpIn 0.8s ease 0.5s forwards; }
+        body.loaded .hero-left .hero-action-btns { animation: fadeUpIn 0.8s ease 0.7s forwards; }
+        body.loaded .hero-center { animation: scaleInPhoto 1s cubic-bezier(0.16, 1, 0.3, 1) 0.4s forwards; }
 
         .hero-left .greeting,
         .hero-left .fullname,
@@ -364,14 +393,8 @@
         }
 
         @keyframes scaleInPhoto {
-            from {
-                opacity: 0;
-                transform: scale(0.85) translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1) translateY(0);
-            }
+            from { opacity: 0; transform: scale(0.85) translateY(30px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
         }
 
         .hero-img-wrapper {
@@ -722,12 +745,18 @@
 </head>
 <body>
 
-    <!-- LAYAR ANIMASI OPENING (INTRO LOADER) -->
+    <!-- LAYAR ANIMASI OPENING DENGAN EFEK PETIR BIRU -->
     <div id="intro-loader">
-        <div class="intro-brand">PORTOFOLIO</div>
-        <div class="intro-subtitle" id="typewriter-text"></div>
-        <div class="loader-bar-bg">
-            <div class="loader-bar-fill" id="loader-bar"></div>
+        <div class="lightning-bolt" style="left: 20%; animation-delay: 0.1s;"></div>
+        <div class="lightning-bolt" style="left: 75%; animation-delay: 0.6s;"></div>
+        <div class="lightning-bolt" style="left: 45%; animation-delay: 1.1s;"></div>
+        
+        <div class="intro-content">
+            <div class="intro-brand">PORTOFOLIO</div>
+            <div class="intro-subtitle" id="typewriter-text"></div>
+            <div class="loader-bar-bg">
+                <div class="loader-bar-fill" id="loader-bar"></div>
+            </div>
         </div>
     </div>
 
