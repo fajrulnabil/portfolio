@@ -444,6 +444,37 @@
             margin-bottom: 0.8rem;
         }
 
+        /* --- SECTION RESUME KHUSUS --- */
+        .resume-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 2.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            transition: all 0.3s ease;
+        }
+
+        .resume-card:hover {
+            border-color: var(--accent-blue);
+            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.15);
+        }
+
+        .resume-info h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--text-main);
+        }
+
+        .resume-info p {
+            color: var(--text-sub);
+            font-size: 0.95rem;
+        }
+
         /* --- KONTAK (SOSMED IKON) --- */
         .social-icons-container {
             display: flex;
@@ -632,6 +663,11 @@
             .hero-action-btns {
                 justify-content: center;
             }
+
+            .resume-card {
+                flex-direction: column;
+                text-align: center;
+            }
         }
 
         @media screen and (max-width: 768px) {
@@ -677,7 +713,7 @@
             <ul class="nav-links">
                 <li><a href="#home">HOME</a></li>
                 <li><a href="#education">ABOUT</a></li>
-                <li><a href="#what-i-can-do">PROJECTS</a></li>
+                <li><a href="#resume">RESUME</a></li>
                 <li><a href="#skills">SKILLS</a></li>
                 <li><a href="#contact">CONTACT</a></li>
                 <li><button class="mode-button" id="theme-toggle">☀️ Mode Terang</button></li>
@@ -699,7 +735,7 @@
             </p>
             <div class="hero-action-btns">
                 <a href="#contact" class="btn-primary"><i class="fas fa-paper-plane"></i> Hubungi Saya</a>
-                <a href="#what-i-can-do" class="btn-secondary"><i class="fas fa-code"></i> Lihat Keahlian</a>
+                <a href="#resume" class="btn-secondary"><i class="fas fa-file-pdf"></i> Lihat Resume / CV</a>
             </div>
         </div>
 
@@ -731,6 +767,20 @@
                 <p><strong>SMA Negeri 1 Trenggalek</strong></p>
                 <p>Jurusan IPA (Terapan)</p>
             </div>
+        </div>
+
+        <!-- SESI RESUME / CV -->
+        <div class="section-header" id="resume">
+            <h2 class="section-title">📄 Curikulum Vitae (CV)</h2>
+        </div>
+        <div class="resume-card">
+            <div class="resume-info">
+                <h3>Unduh Ringkasan CV / Resume Profesional</h3>
+                <p>Dapatkan dokumen CV lengkap mengenai latar belakang pendidikan, keahlian teknis, dan informasi akademik saya dalam format PDF.</p>
+            </div>
+            <a href="cv.pdf" download="CV_Fajrul_Falah_Nabil_Prasetyansyah.pdf" class="btn-primary">
+                <i class="fas fa-download"></i> Download CV (PDF)
+            </a>
         </div>
 
         <!-- WHAT I CAN DO -->
