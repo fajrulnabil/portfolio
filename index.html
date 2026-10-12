@@ -19,14 +19,14 @@
             scroll-behavior: smooth;
         }
 
-        /* --- ANIMASI OPENING SCREEN DENGAN SAMBARAN PETIR ZIGZAG BIRU --- */
+        /* --- ANIMASI OPENING SCREEN (BADAI PETIR & AWAN DRAMATIS) --- */
         #intro-loader {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100vh;
-            background-color: #030712;
+            background: radial-gradient(circle at center, #0f1c2e 0%, #060a10 60%, #020408 100%);
             z-index: 999999;
             display: flex;
             flex-direction: column;
@@ -37,85 +37,125 @@
             overflow: hidden;
         }
 
-        /* Kilatan Cahaya Latar Belakang saat Petir Menyambar */
-        #intro-loader::before {
-            content: '';
+        /* Tekstur Awan Badai / Storm Clouds di Latar Belakang */
+        .storm-clouds {
+            position: absolute;
+            inset: -20px;
+            background: 
+                radial-gradient(ellipse at 20% 20%, rgba(20, 35, 60, 0.8) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 80%, rgba(10, 20, 35, 0.9) 0%, transparent 60%),
+                radial-gradient(ellipse at 50% 50%, rgba(5, 12, 22, 0.95) 0%, transparent 80%);
+            filter: blur(15px);
+            opacity: 0.9;
+            z-index: 1;
+            animation: cloudPulse 6s infinite alternate ease-in-out;
+        }
+
+        @keyframes cloudPulse {
+            0% { transform: scale(1); opacity: 0.85; }
+            100% { transform: scale(1.04); opacity: 1; }
+        }
+
+        /* Kilatan Cahaya Petir Massal (Sky Flash) */
+        .storm-flash {
             position: absolute;
             inset: 0;
-            background: radial-gradient(circle, rgba(59, 130, 246, 0.4) 0%, transparent 70%);
+            background: radial-gradient(circle at 50% 40%, rgba(96, 165, 250, 0.45) 0%, rgba(37, 99, 235, 0.2) 40%, transparent 75%);
             opacity: 0;
-            animation: skyFlash 3s infinite ease-in-out;
+            animation: multiFlash 2.4s infinite;
             pointer-events: none;
-            z-index: 1;
+            z-index: 2;
         }
 
-        @keyframes skyFlash {
+        @keyframes multiFlash {
             0%, 100% { opacity: 0; }
-            12% { opacity: 0.9; filter: drop-shadow(0 0 50px #3b82f6); }
-            14% { opacity: 0.1; }
-            16% { opacity: 1; filter: drop-shadow(0 0 80px #60a5fa); }
-            20% { opacity: 0; }
-            50% { opacity: 0.7; filter: drop-shadow(0 0 40px #2563eb); }
-            53% { opacity: 0; }
+            10% { opacity: 0.95; filter: drop-shadow(0 0 70px #3b82f6); }
+            13% { opacity: 0.2; }
+            15% { opacity: 1; filter: drop-shadow(0 0 100px #60a5fa); }
+            19% { opacity: 0.1; }
+            22% { opacity: 0.85; }
+            26% { opacity: 0; }
+            65% { opacity: 0.7; }
+            67% { opacity: 0.1; }
+            70% { opacity: 0.9; }
+            75% { opacity: 0; }
         }
 
-        /* Wadah Elemen Petir SVG Zigzag */
-        .lightning-container {
+        /* Wadah Petir Ramai & Bercabang */
+        .lightning-storm-grid {
             position: absolute;
             inset: 0;
             width: 100%;
             height: 100%;
             pointer-events: none;
-            z-index: 1;
+            z-index: 3;
         }
 
-        .real-lightning {
+        .branch-lightning {
             position: absolute;
-            top: -10%;
-            width: 220px;
-            height: 120%;
             fill: none;
-            stroke: #60a5fa;
-            stroke-width: 4.5;
+            stroke: #e0f2fe;
+            stroke-width: 3.5;
             stroke-linecap: round;
             stroke-linejoin: round;
-            filter: drop-shadow(0 0 12px #3b82f6) drop-shadow(0 0 25px #2563eb);
+            filter: drop-shadow(0 0 10px #3b82f6) drop-shadow(0 0 25px #60a5fa) drop-shadow(0 0 45px #93c5fd);
             opacity: 0;
         }
 
-        /* Sambaran Petir 1 (Kiri) */
-        .bolt-1 {
-            left: 15%;
-            animation: strike1 2.8s infinite ease-in-out;
+        /* Konfigurasi Sambaran Petir Ramai dari Berbagai Sisi */
+        .storm-bolt-1 {
+            top: -10%;
+            left: 5%;
+            width: 350px;
+            height: 120%;
+            animation: strikeAction1 2.2s infinite ease-in-out;
         }
 
-        /* Sambaran Petir 2 (Kanan) */
-        .bolt-2 {
-            right: 18%;
+        .storm-bolt-2 {
+            top: -5%;
+            right: 8%;
+            width: 400px;
+            height: 125%;
             transform: scaleX(-1);
-            animation: strike2 3.4s infinite ease-in-out 0.7s;
+            animation: strikeAction2 2.7s infinite ease-in-out 0.4s;
         }
 
-        @keyframes strike1 {
-            0%, 100% { opacity: 0; transform: translateY(-20px) scale(0.9); }
-            12% { opacity: 1; transform: translateY(0) scale(1.05); }
-            15% { opacity: 0.2; }
-            17% { opacity: 1; }
-            22% { opacity: 0; }
+        .storm-bolt-3 {
+            top: -15%;
+            left: 30%;
+            width: 300px;
+            height: 110%;
+            animation: strikeAction3 1.9s infinite ease-in-out 0.9s;
         }
 
-        @keyframes strike2 {
-            0%, 100% { opacity: 0; transform: scaleX(-1) translateY(-20px) scale(0.9); }
-            8% { opacity: 1; transform: scaleX(-1) translateY(0) scale(1.05); }
-            11% { opacity: 0.3; }
-            13% { opacity: 1; }
-            18% { opacity: 0; }
+        @keyframes strikeAction1 {
+            0%, 100% { opacity: 0; transform: translateY(-10px) scale(0.95); }
+            11% { opacity: 1; transform: translateY(0) scale(1.05); }
+            13% { opacity: 0.15; }
+            15% { opacity: 0.95; }
+            20% { opacity: 0; }
         }
 
-        /* Elemen di dalam Loader (di atas petir) */
+        @keyframes strikeAction2 {
+            0%, 100% { opacity: 0; transform: scaleX(-1) translateY(-15px) scale(0.9); }
+            7% { opacity: 1; transform: scaleX(-1) translateY(0) scale(1.08); }
+            9% { opacity: 0.2; }
+            12% { opacity: 1; }
+            17% { opacity: 0; }
+        }
+
+        @keyframes strikeAction3 {
+            0%, 100% { opacity: 0; transform: translateY(-5px); }
+            15% { opacity: 0.9; }
+            17% { opacity: 0.1; }
+            19% { opacity: 1; }
+            24% { opacity: 0; }
+        }
+
+        /* Konten Utama di dalam Loader */
         .intro-content {
             position: relative;
-            z-index: 2;
+            z-index: 4;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -124,43 +164,44 @@
         .intro-brand {
             font-size: 2.3rem;
             font-weight: 900;
-            color: #60a5fa;
+            color: #93c5fd;
             letter-spacing: 5px;
             margin-bottom: 0.8rem;
-            text-shadow: 0 0 20px rgba(59, 130, 246, 0.8);
+            text-shadow: 0 0 25px rgba(59, 130, 246, 0.9);
             animation: pulseGlow 1.5s infinite alternate;
         }
 
         @keyframes pulseGlow {
-            from { text-shadow: 0 0 10px rgba(59, 130, 246, 0.4); transform: scale(1); }
-            to { text-shadow: 0 0 30px rgba(96, 165, 250, 1); transform: scale(1.02); }
+            from { text-shadow: 0 0 10px rgba(59, 130, 246, 0.5); transform: scale(1); }
+            to { text-shadow: 0 0 35px rgba(147, 197, 253, 1); transform: scale(1.02); }
         }
 
         .intro-subtitle {
             font-size: 1.05rem;
-            color: #94a3b8;
+            color: #cbd5e1;
             letter-spacing: 1.5px;
             margin-bottom: 2rem;
             font-weight: 500;
             min-height: 1.6rem;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.8);
         }
 
         .loader-bar-bg {
             width: 220px;
             height: 4px;
-            background-color: #1e293b;
+            background-color: rgba(30, 41, 59, 0.8);
             border-radius: 4px;
             overflow: hidden;
             position: relative;
-            box-shadow: 0 0 10px rgba(59, 130, 246, 0.3);
+            box-shadow: 0 0 15px rgba(59, 130, 246, 0.4);
         }
 
         .loader-bar-fill {
             width: 0%;
             height: 100%;
-            background: linear-gradient(90deg, #2563eb, #60a5fa);
+            background: linear-gradient(90deg, #2563eb, #60a5fa, #93c5fd);
             border-radius: 4px;
-            box-shadow: 0 0 12px #3b82f6;
+            box-shadow: 0 0 15px #3b82f6;
             transition: width 0.1s linear;
         }
 
@@ -707,7 +748,7 @@
         .music-widget.playing .soundwave span:nth-child(2) { animation: waveBar 1.1s ease-in-out infinite alternate 0.2s; }
         .music-widget.playing .soundwave span:nth-child(3) { animation: waveBar 0.7s ease-in-out infinite alternate 0.4s; }
 
-        @keyframes waveBar {
+        @keyframes waveBad {
             0% { height: 3px; }
             100% { height: 14px; }
         }
@@ -780,16 +821,23 @@
 </head>
 <body>
 
-    <!-- LAYAR ANIMASI OPENING DENGAN SAMBARAN PETIR ZIGZAG REALISTIS -->
+    <!-- LAYAR ANIMASI OPENING (BADAI PETIR RAMAI & AWAN DRAMATIS) -->
     <div id="intro-loader">
-        <div class="lightning-container">
-            <!-- SVG Petir Zigzag Kiri -->
-            <svg class="real-lightning bolt-1" viewBox="0 0 100 500">
-                <path d="M50 0 L30 120 L65 140 L20 280 L55 300 L10 500 M30 120 L10 200 M20 280 L5 360" />
+        <div class="storm-clouds"></div>
+        <div class="storm-flash"></div>
+        
+        <div class="lightning-storm-grid">
+            <!-- Petir Cabang 1 -->
+            <svg class="branch-lightning storm-bolt-1" viewBox="0 0 150 500">
+                <path d="M70 0 L40 100 L95 125 L35 240 L80 265 L20 390 L65 415 L10 500 M40 100 L15 170 M95 125 L120 185 M35 240 L10 300 M80 265 L110 330" />
             </svg>
-            <!-- SVG Petir Zigzag Kanan -->
-            <svg class="real-lightning bolt-2" viewBox="0 0 100 500">
-                <path d="M50 0 L25 110 L60 135 L15 270 L50 295 L5 500 M25 110 L5 190 M15 270 L0 350" />
+            <!-- Petir Cabang 2 -->
+            <svg class="branch-lightning storm-bolt-2" viewBox="0 0 150 500">
+                <path d="M80 0 L50 110 L105 135 L40 255 L90 280 L25 410 L75 435 L15 500 M50 110 L25 180 L5 210 M105 135 L130 195 M40 255 L15 320 M90 280 L120 350" />
+            </svg>
+            <!-- Petir Cabang 3 -->
+            <svg class="branch-lightning storm-bolt-3" viewBox="0 0 150 500">
+                <path d="M60 0 L30 95 L85 120 L25 230 L70 255 L15 375 L60 400 L5 500 M30 95 L5 155 M85 120 L115 175 M25 230 L5 295 M70 255 L100 320" />
             </svg>
         </div>
         
@@ -1004,7 +1052,7 @@
         themeToggleBtn.addEventListener('click', () => {
             document.body.classList.toggle('light-mode');
             if (document.body.classList.contains('light-mode')) {
-                themeToggleBtn.textContent = '🌙 Mode Gelap';
+                themeToggleBtn.textContent = '🌙 Mode Terang';
             } else {
                 themeToggleBtn.textContent = '☀️ Mode Terang';
             }
